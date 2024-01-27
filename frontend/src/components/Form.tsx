@@ -1,4 +1,6 @@
+
 export default function Form() {
+
     return <>
         <form className="flex flex-col gap-9 items-center">
             <div className="flex gap-40">
@@ -23,7 +25,7 @@ export default function Form() {
                 </div>
             </div>
             <div>
-                <button className=" bg-green-500 text-white rounded-2xl p-4 hover:duration-300 hover:bg-orange-400">Submit Request</button>
+                <button className=" bg-green-500 text-white rounded-2xl p-4 hover:duration-300 hover:bg-orange-400" type="submit">Submit Request</button>
             </div>
         </form>
     </>
