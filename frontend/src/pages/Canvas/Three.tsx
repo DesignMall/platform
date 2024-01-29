@@ -4,11 +4,6 @@ import toast from "react-hot-toast"
 import Coloring from "../../components/Canvas/Coloring"
 export default function ThreeDCanv() {
     const [Color, setColor] = useState(false)
-    const [Texture, SetTexture] = useState(false)
-    const setThemAllFalse = ()=>{
-        setColor(false)
-        SetTexture(false)
-    }
     useEffect(() => {
         Setup3D()
         toast.success('Yalah Sticky l7ala m3a rassk albatal(a)')
