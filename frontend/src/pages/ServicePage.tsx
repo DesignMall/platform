@@ -1,7 +1,5 @@
 import { BsChevronDoubleDown } from 'react-icons/bs';
 import Clothes from '../assets/clothes.png'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from 'react-router-dom';
 import TypewriterComponent from 'typewriter-effect';
 import Header from '../components/Header';
