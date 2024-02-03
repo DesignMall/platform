@@ -40,6 +40,7 @@ export default function Services() {
                         <div className=" max-w-sm rounded-lg border-green-400 flex flex-col max-h-max border p-8 font-bold items-center hover:cursor-pointer hover:scale-110 hover:bg-green-400 hover:text-white hover:duration-500">
                             <img src={logo} className='max-w-sm max-h-max'></img>
                             <h1 className='text-green-400 animate-bounce'><BsChevronDoubleDown /></h1>
+                            <h1>Carpentry</h1>
                             <h2 className=' text-red-600'>Soon to be Released</h2>
                         </div>
                         <div className=" max-w-sm rounded-lg border-green-400 flex flex-col max-h-max border p-8 font-bold items-center hover:cursor-pointer hover:scale-110 hover:bg-green-400 hover:text-white hover:duration-500">
