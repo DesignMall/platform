@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import background from '../assets/backLand.png'
 import Logo from '../assets/Logo2.png'
+import ThreeD from '../assets/3D/threeD.png'
 import { BsChevronDoubleDown } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import TypewriterComponent from 'typewriter-effect';
@@ -13,7 +14,7 @@ function Landing() {
         <>
             <div className='flex h-screen bg-gradient-to-tr from-green-200 to-transparent to-65%'>
                 <div className='mt-20'>
-                    <img src={background}></img>
+                    {window.innerWidth === 720 && <img src={background}></img>}
                 </div>
                 <div className='justify-end'>
                     <div className='flex flex-col'>
@@ -29,7 +30,8 @@ function Landing() {
                                         .start()
                                 }} />
                             </div>
-                            <h2 className='font-bold '>Click Below and Make Your Life Easy</h2>
+                            {window.innerWidth > 720 && <h2 className='font-bold '>Click Below and Make Your Life Easy</h2>}
+                            {window.innerWidth < 720 && <img src={ThreeD} className=' w-60'></img>}
                         </div>
                         <div className='flex justify-center'>
                             <h2 className='animate-ping text-red-500'><BsChevronDoubleDown /></h2>
