@@ -1,3 +1,5 @@
 {
-    "rewrites": [{ "source": "/(.*)", "destination": "/dist/index.html" }]
-}
+    "version": 2,
+    "builds": [{ "src": "dist/**/*", "use": "@now/static" }]
+  }
+  
