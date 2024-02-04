@@ -5,7 +5,9 @@ import 'swiper/css'
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import { useNavigate } from 'react-router-dom';
 export default function Clubs() {
+    const Navigate = useNavigate()
     return (
         <>
             <div className=' p-6 flex text-center'>
@@ -17,7 +19,7 @@ export default function Clubs() {
                     onSlideChange={() => console.log('slide change')}>
                     <SwiperSlide>
                         <div className=' flex justify-center'>
-                            <div className=" max-w-sm rounded-lg border-green-400 flex flex-col border p-8 font-bold items-center hover:cursor-pointer hover:scale-110 hover:bg-green-400 hover:text-white hover:duration-500">
+                            <div className=" max-w-sm rounded-lg border-green-400 flex flex-col border p-8 font-bold items-center hover:cursor-pointer hover:scale-110 hover:bg-green-400 hover:text-white hover:duration-500" onClick={()=>Navigate('/sport/PlayerChoice')}>
                                 <h1 className='text-green-400 animate-bounce'><BsChevronDoubleDown /></h1>
                                 <h1>Barcelona</h1>
                             </div>
