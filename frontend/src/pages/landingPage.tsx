@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import background from '../assets/backLand.png'
+// import background from '../assets/backLand.png'
 import Logo from '../assets/Logo2.png'
 import ThreeD from '../assets/3D/threeD.png'
 import { BsChevronDoubleDown } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import TypewriterComponent from 'typewriter-effect';
+import intro from '../assets/DesignMall.gif'
 function Landing() {
     const [Text, setText] = useState("START")
     const [Animation, setAnimation] = useState('w-80 animate-bounce hover:cursor-pointer')
@@ -12,9 +13,9 @@ function Landing() {
     const Navigate = useNavigate()
     return (
         <>
-            <div className='flex h-screen bg-gradient-to-tr from-green-200 to-transparent to-65%'>
+            <div className='flex h-screen bg-gradient-to-tl from-green-200 to-transparent to-45% justify-center'>
                 <div className='mt-20'>
-                    {window.innerWidth === 720 && <img src={background}></img>}
+                    {window.innerWidth > 720 && <img src={intro}></img>}
                 </div>
                 <div className='justify-end'>
                     <div className='flex flex-col'>
@@ -49,7 +50,7 @@ function Landing() {
                                     Navigate('/services')
                                 }, 4000)
                             }}
-                                className='bg-green-600 text-white border-none p-3 rounded-xl hover:bg-dm-orange hover:duration-300 w-72'>{Text}</button>
+                                className='bg-green-600 text-white border-none p-3 rounded-xl hover:bg-dm-orange hover:duration-300 w-72 font-extrabold'>{Text}</button>
                         </div>
                     </div>
                 </div>
