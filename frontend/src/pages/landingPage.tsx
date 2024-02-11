@@ -4,8 +4,8 @@ import Logo from '../assets/Logo2.png'
 import ThreeD from '../assets/3D/threeD.png'
 import { BsChevronDoubleDown } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
-import TypewriterComponent from 'typewriter-effect';
 import intro from '../assets/DesignMall.gif'
+import { motion } from 'framer-motion'
 function Landing() {
     const [Text, setText] = useState("START")
     const [Animation, setAnimation] = useState('w-80 animate-bounce hover:cursor-pointer')
@@ -17,43 +17,38 @@ function Landing() {
                 <div className='mt-20'>
                     {window.innerWidth > 720 && <img src={intro}></img>}
                 </div>
-                <div className='justify-end'>
-                    <div className='flex flex-col'>
-                        <div className='flex flex-col items-center p-20'>
-                            <img src={Logo} className={Animation}></img>
-                            <div className='text-orange-400 font-extrabold'>
-                                <TypewriterComponent onInit={(typewriter) => {
-                                    typewriter.typeString("Yesss!!! I am Happy U're Here!")
-                                        .pauseFor(1000)
-                                        .deleteAll()
-                                        .typeString("Ready for some Magic?")
-                                        .changeDeleteSpeed(2)
-                                        .start()
-                                }} />
+                <motion.div initial={{ translateX: 100, opacity: 0 }}
+                    animate={{ translateX: 0, opacity: 1 }}
+                    transition={{ delay: 1, duration: 1.5 }}>
+                    <div className='justify-end'>
+                        <div className='flex flex-col'>
+                            <div className='flex flex-col items-center p-20'>
+                                <img src={Logo} className={Animation}></img>
+                                {window.innerWidth > 720 && <h2 className='font-bold text-orange-500'>Let's turn your Idea to Reality</h2>}
+                                {window.innerWidth < 720 && <img src={ThreeD} className=' w-60'></img>}
                             </div>
-                            {window.innerWidth > 720 && <h2 className='font-bold '>Click Below and Make Your Life Easy</h2>}
-                            {window.innerWidth < 720 && <img src={ThreeD} className=' w-60'></img>}
-                        </div>
-                        <div className='flex justify-center'>
-                            <h2 className='animate-ping text-red-500'><BsChevronDoubleDown /></h2>
-                        </div>
-                        <div className='flex flex-col items-center'>
-                            <button onMouseOver={() => {
-                                if (!flagForText) setText("Siiir(i) a'M3llem(a)")
-                            }} onMouseLeave={() => {
-                                if (!flagForText) setText("Clicki asat(a) Bla Madoukh(i) 3lina")
-                            }} onClick={() => {
-                                setAnimation('w-80 animate-spin')
-                                setText("Sbr(i) 3lina wahd Chwi!!")
-                                setFlag(true)
-                                setTimeout(() => {
-                                    Navigate('/services')
-                                }, 4000)
-                            }}
-                                className='bg-green-600 text-white border-none p-3 rounded-xl hover:bg-dm-orange hover:duration-300 w-72 font-extrabold'>{Text}</button>
+                            <div className='flex justify-center'>
+                                <h2 className='animate-ping text-red-500'><BsChevronDoubleDown /></h2>
+                            </div>
+                            <div className='flex flex-col items-center'>
+                                <button onMouseOver={() => {
+                                    if (!flagForText) setText("Siiir(i) a'M3llem(a)")
+                                }} onMouseLeave={() => {
+                                    if (!flagForText) setText("Clicki asat(a) Bla Madoukh(i) 3lina")
+                                }} onClick={() => {
+                                    setAnimation('w-80 animate-spin')
+                                    setText("Sbr(i) 3lina wahd Chwi!!")
+                                    setFlag(true)
+                                    setTimeout(() => {
+                                        Navigate('/services')
+                                    }, 4000)
+                                }}
+                                    className='bg-green-600 text-white border-none p-3 rounded-xl hover:bg-dm-orange hover:duration-300 w-72 font-extrabold'>{Text}</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
+
 
             </div>
         </>
