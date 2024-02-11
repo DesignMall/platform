@@ -52,7 +52,7 @@ export default function Services() {
                             initial={{ translateX: -100, rotate: -80, opacity: 0 }}
                             animate={{ translateX: 0, rotate: 0, opacity: 1 }}
                             transition={{ duration: 0.5, delay: 2 * 0.1 }}>
-                            <div className=" max-w-sm rounded-lg border-green-400 flex flex-col max-h-max border p-8 font-bold items-center hover:cursor-pointer hover:scale-110 hover:bg-green-400 hover:text-white hover:duration-500">
+                            <div className=" max-w-sm rounded-lg border-green-400 flex flex-col max-h-max border p-8 font-bold items-center hover:cursor-pointer hover:scale-110 hover:bg-green-400 hover:text-white hover:duration-500" onClick={()=>Navigate('/carpentry')}>
                                 <img src={logo} className='max-w-sm max-h-max'></img>
                                 <h1 className='text-green-400 animate-bounce'><BsChevronDoubleDown /></h1>
                                 <h1>Carpentry</h1>

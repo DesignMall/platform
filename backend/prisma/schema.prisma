@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Roles {
+  Executive
+  CEO
+  Admin
+}
+
+model Customer {
+  customerId  String    @id @unique
+  FirstName   String
+  LastName    String
+  PhoneNumber String
+  Location    String
+  Email       String
+  Password    String
+  Archives    Archive[]
+  Services    Service[]
+}
+
+model Archive {
+  ArchiveId  String   @id @unique
+  CustomerID String
+  customer   Customer @relation(fields: [CustomerID], references: [customerId])
+}
+
+model Administrator {
+  AdminID   String @id
+  FirstName String
+  LastName  String
+  Role Roles
+  Email String
+  Password String
+}
+
+model Provider {
+  providerId  String    @id @unique
+  FirstName   String
+  LastName    String
+  Email       String
+  Password    String
+  PhoneNumber String
+  Location    String
+  Field       String
+  Rate        Float
+  Experience  Int
+  Available   Boolean
+  Service     Service[]
+}
+
+model Service {
+  ServiceId   String     @id
+  Description String
+  Price       Float
+  CustomerId  String
+  Customer    Customer   @relation(fields: [CustomerId], references: [customerId])
+  Providers   Provider[]
+}
+
+model Suppliers {
+  SupplierID  String @id
+  Name        String
+  Field       String
+  Location    String
+  PhoneNumber String
+}
+
+model Player {
+  PlayerID     String @id
+  PlayerName   String
+  PlayerNumber String
+  Season       String
+  teamId       String
+  Team         Teams  @relation(fields: [teamId], references: [TeamID])
+}
+
+model Teams {
+  TeamID   String   @id
+  Name     String
+  Category String
+  Players  Player[]
+}
+

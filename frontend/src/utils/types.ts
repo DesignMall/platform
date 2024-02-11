@@ -15,3 +15,19 @@ export interface NumberDimensions{
     size: number
     Font?: string
 }
+
+export interface OptionsCarp{
+    key?: number
+    name:string
+    images:string[]
+    clicked?: boolean
+}
+
+export interface Dropdown{
+    name:string
+    images?: string[]
+}
+
+export interface Nodes{
+    children: React.ReactNode
+}
