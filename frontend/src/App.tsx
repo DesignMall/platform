@@ -10,6 +10,7 @@ import Nationals from "./pages/Services/teams/national"
 import PlayerChoice from "./pages/Canvas/2D/team"
 import Carpentry from "./pages/Services/carpentry"
 import CarpentryCanvas from "./components/Canvas/Material"
+import DmInfo from "./pages/info"
 export default function App() {
   return <>
     <BrowserRouter>
@@ -19,15 +20,16 @@ export default function App() {
         <Route path="/clothing" element={<Clothing />} />
         <Route path="/canvas" element={<ThreeDCanv />} />
         <Route path="/projects" element={<Projects />}></Route>
-        <Route path="/carpentry" element={<Carpentry/>}>
-               <Route index element={<Navigate to='/carpentry/table'/>}/>
-               <Route path="table" element={<CarpentryCanvas/>}/>
+        <Route path="/carpentry" element={<Carpentry />}>
+          <Route index element={<Navigate to='/carpentry/table' />} />
+          <Route path="table" element={<CarpentryCanvas />} />
         </Route>
+        <Route path="/info" element={<DmInfo />} />
         <Route path="/sport/:category?" element={<Sport />}>
           <Route index element={<Navigate to='/sport/:category?/clubs' />} />
           <Route path="clubs" element={<Clubs />} />
           <Route path="national" element={<Nationals />} />
-          <Route path="playerChoice" element={<PlayerChoice/>}/>
+          <Route path="playerChoice" element={<PlayerChoice />} />
         </Route>
       </Routes>
     </BrowserRouter>

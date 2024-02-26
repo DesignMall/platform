@@ -19,6 +19,7 @@ export default function Services() {
                     <TypewriterComponent onInit={(typewriter) => {
                         typewriter.typeString(`Transform Your Ideas to Reality`)
                             .pauseFor(3000)
+                            .deleteAll(2)
                             .typeString(`Create Everything from Scratch`)
                             .changeDeleteSpeed(2)
                             .start()

@@ -24,7 +24,6 @@ export default function Clothing() {
                         <img src={clothes} className='object-contain w-96 h-56'></img>
                         <h1 className='font-extrabold text-green-800'>T-Shirts</h1>
                         <button className="font-bold bg-green-500 rounded-2xl px-10 py-3 text-white hover:bg-orange-500 hover:duration-300" onClick={()=>Navigate('/canvas')}>CREATE</button>
-                        <h2 className=' text-red-500 font-bold'>Soon To Be Released, Have a Hint</h2>
                     </div>
                     <div className="rounded-2xl border-2 border-green-400 max-w-max max-h-max flex flex-col items-center p-6 gap-y-4">
                         <img src={Logo} className='object-contain w-96 h-56'></img>
