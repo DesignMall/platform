@@ -30,7 +30,7 @@ public class LogoutService implements LogoutHandler {
       HttpServletResponse response,
       Authentication authentication
   ) {
-    this.logingOut(request);
+//    this.logingOut(request);
     final String authHeader = request.getHeader("Authorization");
     final String jwt;
     if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
@@ -46,42 +46,42 @@ public class LogoutService implements LogoutHandler {
       SecurityContextHolder.clearContext();
     }
   }
-  public void logingOut(HttpServletRequest request) {
-    System.out.println("logout");
-    final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-    final String accessToken;
-    final String userEmail;
-
-    if (authHeader != null && authHeader.startsWith("Bearer ")) {
-      accessToken = authHeader.substring(7);
-      userEmail = jwtService.extractUsername(accessToken);
-
-      if (userEmail != null) {
-        var user = userRepository.findByEmail(userEmail).orElse(null);
-        switch (user.getRole()) {
-          case ADMIN:
-            Admin admin = adminRepository.findByEmail(userEmail);
-            admin.setState(State.OFFLINE);
-            adminRepository.save(admin);
-            break;
-          case COMPANY:
-            Company company = companyRepository.findCompanyWithoutImage(userEmail).orElse(null);
-            Long imageId = companyRepository.findCompanyImageId(company.getId());
-            Files image = new Files(imageId);
-            company.setImage(image);
-            company.setState(State.OFFLINE);
-            companyRepository.save(company);
-            break;
-          case APPLICANT:
-            Applicant applicant = applicantRepository.findApplicantWithoutCv(userEmail).orElse(null);
-            Long cvId = applicantRepository.findApplicantCvId(applicant.getId());
-            Files cv = new Files(cvId);
-            applicant.setCv(cv);
-            applicant.setState(State.OFFLINE);
-            applicantRepository.save(applicant);
-            break;
-        }
-      }
-    }
-  }
+//  public void logingOut(HttpServletRequest request) {
+//    System.out.println("logout");
+//    final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+//    final String accessToken;
+//    final String userEmail;
+//
+//    if (authHeader != null && authHeader.startsWith("Bearer ")) {
+//      accessToken = authHeader.substring(7);
+//      userEmail = jwtService.extractUsername(accessToken);
+//
+//      if (userEmail != null) {
+//        var user = userRepository.findByEmail(userEmail).orElse(null);
+//        switch (user.getRole()) {
+//          case ADMIN:
+//            Admin admin = adminRepository.findByEmail(userEmail);
+//            admin.setState(State.OFFLINE);
+//            adminRepository.save(admin);
+//            break;
+//          case COMPANY:
+//            Company company = companyRepository.findCompanyWithoutImage(userEmail).orElse(null);
+//            Long imageId = companyRepository.findCompanyImageId(company.getId());
+//            Files image = new Files(imageId);
+//            company.setImage(image);
+//            company.setState(State.OFFLINE);
+//            companyRepository.save(company);
+//            break;
+//          case APPLICANT:
+//            Applicant applicant = applicantRepository.findApplicantWithoutCv(userEmail).orElse(null);
+//            Long cvId = applicantRepository.findApplicantCvId(applicant.getId());
+//            Files cv = new Files(cvId);
+//            applicant.setCv(cv);
+//            applicant.setState(State.OFFLINE);
+//            applicantRepository.save(applicant);
+//            break;
+//        }
+//      }
+//    }
+//  }
 }

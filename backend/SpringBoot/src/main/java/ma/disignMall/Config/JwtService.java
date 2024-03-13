@@ -35,41 +35,9 @@ public class JwtService {
     final Claims claims = extractAllClaims(token);
     return claimsResolver.apply(claims);
   }
-
-  public String generateToken(UserDetails userDetails, User user, Company company) {
-    Map<String, Object> claims = new HashMap<>();
-    claims.put("id", company.getId());
-    claims.put("name", user.getName());
-    claims.put("email", user.getEmail());
-    claims.put("role", user.getRole());
-    claims.put("plan", company.getPlan().getId());
-
-    return buildToken(claims, userDetails, jwtExpiration);
-  }
   public String generateToken(UserDetails userDetails, User user) {
     Map<String, Object> claims = new HashMap<>();
     claims.put("id", user.getId());
-    claims.put("name", user.getName());
-    claims.put("email", user.getEmail());
-    claims.put("role", user.getRole());
-
-    return buildToken(claims, userDetails, jwtExpiration);
-  }
-
-  public String generateToken(UserDetails userDetails, User user, Applicant applicant) {
-    Map<String, Object> claims = new HashMap<>();
-    claims.put("id", applicant.getId());
-    claims.put("name", user.getName());
-    claims.put("email", user.getEmail());
-    claims.put("role", user.getRole());
-    claims.put("firstName", applicant.getFirstName());
-
-    return buildToken(claims, userDetails, jwtExpiration);
-  }
-
-  public String generateToken(UserDetails userDetails, User user, Admin admin) {
-    Map<String, Object> claims = new HashMap<>();
-    claims.put("id", admin.getId());
     claims.put("name", user.getName());
     claims.put("email", user.getEmail());
     claims.put("role", user.getRole());

@@ -1,21 +1,36 @@
 package ma.disignMall.Models.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 public class Player {
     @Id
-    private String playerId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long Id;
+
+    @Column(name = "player_name")
     private String playerName;
+
+    @Column(name = "player_number")
     private String playerNumber;
-    private String season;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Teams team;
 
-    // Getters and setters
+    @Column(name = "text_color")
+    private String textColor;
+
+    @OneToOne
+    @JoinColumn(name = "name_coordinates_id")
+    private Coordinates nameCoordinates;
+
+    @ManyToOne
+    private Coordinates numberCoordinates;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }

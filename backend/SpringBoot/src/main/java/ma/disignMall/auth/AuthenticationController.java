@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
 
   private final AuthenticationService service;
 
-  @PostMapping(value = "/register",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  @PostMapping(value = "/register")
   public ResponseEntity<AuthenticationResponse> register(
-          @ModelAttribute RegisterRequest request
-  ) throws IOException {
+          @RequestBody RegisterRequest request
+  ){
     return ResponseEntity.ok(service.register(request));
   }
   @PostMapping("/authenticate")

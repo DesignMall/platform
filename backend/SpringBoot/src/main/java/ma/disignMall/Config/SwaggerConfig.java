@@ -12,12 +12,12 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 @OpenAPIDefinition(
         info = @Info(
                 contact = @Contact(
-                        name = "elhamel",
-                        email = "elhamel.abderrahmane+spring@gmail.com",
-                        url = "https://elhamel.ma"
+                        name = "user",
+                        email = "user+spring@gmail.com",
+                        url = "https://designmall.ma"
                 ),
                 description = "OpenApi documentation for Spring Security",
-                title = "OpenApi specification - elhamel",
+                title = "OpenApi specification - user",
                 version = "1.0",
                 license = @License(
                         name = "Licence name",
@@ -41,14 +41,14 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
                 )
         }
 )
-@SecurityScheme(
-        name = "bearerAuth",
-        description = "JWT auth description",
-        scheme = "bearer",
-        type = SecuritySchemeType.HTTP,
-        bearerFormat = "JWT",
-        in = SecuritySchemeIn.HEADER
-)
+//@SecurityScheme(
+//        name = "bearerAuth",
+//        description = "JWT auth description",
+//        scheme = "bearer",
+//        type = SecuritySchemeType.HTTP,
+//        bearerFormat = "JWT",
+//        in = SecuritySchemeIn.HEADER
+//)
 
 public class SwaggerConfig {
 }

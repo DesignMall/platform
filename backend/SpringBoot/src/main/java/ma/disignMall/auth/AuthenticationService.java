@@ -10,10 +10,7 @@ import ma.disignMall.Models.user.User;
 import ma.disignMall.Models.user.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ma.disignMall.Repositories.AdminRepository;
-import ma.disignMall.Repositories.ApplicantRepository;
-import ma.disignMall.Repositories.CompanyRepository;
 import ma.disignMall.Repositories.PlanRepository;
-import ma.disignMall.Services.FileService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +32,7 @@ public class AuthenticationService {
   private final AuthenticationManager authenticationManager;
   private final AdminRepository adminRepository;
 
-  public AuthenticationResponse register(RegisterRequest request) throws IOException {
+  public AuthenticationResponse register(RegisterRequest request){
     System.out.println(request);
     var user = User.builder()
         .name(request.getName())
@@ -45,26 +42,6 @@ public class AuthenticationService {
         .build();
     var savedUser = userRepository.save(user);
     var jwtToken = jwtService.generateToken(savedUser,savedUser);
-    switch (request.getRole()) {
-      case ADMIN:
-        Admin admin = new Admin(0L, request.getName() ,request.getEmail(),passwordEncoder.encode(request.getPassword()), State.ONLINE);
-        adminRepository.save(admin);
-        jwtToken = jwtService.generateToken(savedUser,savedUser,admin);
-        break;
-      case APPLICANT:
-        Files cv = fileService.storeDataIntoFileSystem(request.getFile());
-        Applicant applicant = new Applicant(0L, request.getName(), request.getLastName(), request.getEmail(),passwordEncoder.encode(request.getPassword()),request.getLevel(),request.getProfile(),request.getCity(),cv, State.ONLINE);
-        applicantRepository.save(applicant);
-        jwtToken = jwtService.generateToken(savedUser,savedUser,applicant);
-        break;
-      case COMPANY:
-        Files image = fileService.storeDataIntoFileSystem(request.getFile());
-        Plan plan = planRepository.findById(1L).orElse(null);
-        Company company = new Company(0L, request.getName(), request.getEmail(),passwordEncoder.encode(request.getPassword()),request.getAddress(),request.getPhone(),image,plan,State.ONLINE);
-        companyRepository.save(company);
-        jwtToken = jwtService.generateToken(savedUser,savedUser,company);
-        break;
-    }
     var refreshToken = jwtService.generateRefreshToken(savedUser);
     saveUserToken(savedUser, jwtToken);
     return AuthenticationResponse.builder()
@@ -83,31 +60,6 @@ public class AuthenticationService {
     var user = userRepository.findByEmail(request.getEmail())
         .orElseThrow();
     var jwtToken = jwtService.generateToken(user,user);
-    switch (user.getRole()) {
-      case ADMIN:
-        Admin admin = adminRepository.findByEmail(user.getEmail());
-        admin.setState(State.ONLINE);
-        jwtToken = jwtService.generateToken(user, user,admin);
-        break;
-      case COMPANY:
-        Company company = companyRepository.findCompanyWithoutImage(user.getEmail()).orElse(null);
-        Long imageId = companyRepository.findCompanyImageId(company.getId());
-        Files image = new Files(imageId);
-        company.setImage(image);
-        company.setState(State.ONLINE);
-        companyRepository.save(company);
-        jwtToken = jwtService.generateToken(user, user,company);
-        break;
-      case APPLICANT:
-        Applicant applicant = applicantRepository.findApplicantWithoutCv(user.getEmail()).orElse(null);
-        Long cvId = applicantRepository.findApplicantCvId(applicant.getId());
-        Files cv = new Files(cvId);
-        applicant.setCv(cv);
-        applicant.setState(State.ONLINE);
-        applicantRepository.save(applicant);
-        jwtToken = jwtService.generateToken(user, user,applicant);
-        break;
-    }
     var refreshToken = jwtService.generateRefreshToken(user);
     revokeAllUserTokens(user);
     saveUserToken(user, jwtToken);

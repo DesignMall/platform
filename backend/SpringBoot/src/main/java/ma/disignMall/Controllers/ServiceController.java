@@ -1,6 +1,7 @@
 package ma.disignMall.Controllers;
 
 import ma.disignMall.Models.Entities.Services;
+import ma.disignMall.Models.DTOs.ServicesDto;
 import ma.disignMall.Services.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/services")
+@RequestMapping("/api/services")
 public class ServiceController {
     @Autowired
     private ServiceService serviceService;
@@ -19,17 +20,17 @@ public class ServiceController {
     }
 
     @GetMapping("/{serviceId}")
-    public Services getServiceById(@PathVariable String serviceId) {
+    public Services getServiceById(@PathVariable Long serviceId) {
         return serviceService.getServiceById(serviceId).orElse(null);
     }
 
     @PostMapping
-    public Services saveService(@RequestBody Services service) {
-        return serviceService.saveService(service);
+    public Services saveService(@RequestBody ServicesDto servicesDto) {
+        return serviceService.saveService(servicesDto);
     }
 
     @DeleteMapping("/{serviceId}")
-    public void deleteService(@PathVariable String serviceId) {
+    public void deleteService(@PathVariable Long serviceId) {
         serviceService.deleteService(serviceId);
     }
 }

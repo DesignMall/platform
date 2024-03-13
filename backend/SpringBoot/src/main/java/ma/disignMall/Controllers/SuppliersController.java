@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/suppliers")
+@RequestMapping("/api/suppliers")
 public class SuppliersController {
     @Autowired
     private SuppliersService suppliersService;
@@ -19,7 +19,7 @@ public class SuppliersController {
     }
 
     @GetMapping("/{supplierId}")
-    public Suppliers getSupplierById(@PathVariable String supplierId) {
+    public Suppliers getSupplierById(@PathVariable Long supplierId) {
         return suppliersService.getSupplierById(supplierId).orElse(null);
     }
 
@@ -29,7 +29,7 @@ public class SuppliersController {
     }
 
     @DeleteMapping("/{supplierId}")
-    public void deleteSupplier(@PathVariable String supplierId) {
+    public void deleteSupplier(@PathVariable Long supplierId) {
         suppliersService.deleteSupplier(supplierId);
     }
 }

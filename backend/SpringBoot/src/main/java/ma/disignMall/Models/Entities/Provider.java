@@ -1,12 +1,20 @@
 package ma.disignMall.Models.Entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Provider {
     @Id
-    private String providerId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long Id;
+
     private String firstName;
     private String lastName;
     private String email;
@@ -20,7 +28,5 @@ public class Provider {
 
     @ManyToMany
     private List<Services> services;
-
-    // Getters and setters
 }
 

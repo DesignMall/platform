@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Value
 public class ProviderDto implements Serializable {
-    String providerId;
+    String Id;
     String firstName;
     String lastName;
     String email;

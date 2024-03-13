@@ -1,5 +1,6 @@
 package ma.disignMall.Controllers;
 
+import ma.disignMall.Models.DTOs.TeamsDto;
 import ma.disignMall.Models.Entities.Teams;
 import ma.disignMall.Services.TeamsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/teams")
+@RequestMapping("/api/teams")
 public class TeamsController {
     @Autowired
     private TeamsService teamsService;
@@ -19,17 +20,17 @@ public class TeamsController {
     }
 
     @GetMapping("/{teamId}")
-    public Teams getTeamById(@PathVariable String teamId) {
+    public Teams getTeamById(@PathVariable Long teamId) {
         return teamsService.getTeamById(teamId).orElse(null);
     }
 
     @PostMapping
-    public Teams saveTeam(@RequestBody Teams team) {
-        return teamsService.saveTeam(team);
+    public Teams saveTeam(@RequestBody TeamsDto teamsDto) {
+        return teamsService.saveTeam(teamsDto);
     }
 
     @DeleteMapping("/{teamId}")
-    public void deleteTeam(@PathVariable String teamId) {
+    public void deleteTeam(@PathVariable Long teamId) {
         teamsService.deleteTeam(teamId);
     }
 }

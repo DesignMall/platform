@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")
-@CrossOrigin(origins = "http://localhost:4200")
 public class AdminController {
 
     AdminService  adminService;
@@ -26,6 +25,12 @@ public class AdminController {
     public ResponseEntity<List<Admin>> getAllAdmin(){
         List<Admin> Admins = adminService.getAllAdmins();
         return ResponseEntity.ok(Admins);
+    }
+
+    @PostMapping
+    public ResponseEntity<Admin> createAdmin(@RequestBody AdminDto adminDto){
+        Admin admin = adminService.createAdmin(adminDto);
+        return new ResponseEntity<>(admin, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")

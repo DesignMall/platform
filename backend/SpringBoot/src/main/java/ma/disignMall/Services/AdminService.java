@@ -1,5 +1,6 @@
 package ma.disignMall.Services;
 
+import ma.disignMall.Models.DTOs.AdminDto;
 import ma.disignMall.Models.Entities.Admin;
 import ma.disignMall.Models.Enums.State;
 import ma.disignMall.Models.Mappers.AdminMapper;
@@ -30,6 +31,10 @@ public class AdminService {
     }
     public List<Admin> getAllAdmins(){
         return adminRepository.findAll();
+    }
+
+    public Admin createAdmin(AdminDto adminDto){
+        return adminRepository.save(adminMapper.toEntity(adminDto));
     }
 
     public Admin getAdminById(Long id){

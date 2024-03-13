@@ -1,21 +1,18 @@
 package ma.disignMall.Models.Entities;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 public class Teams {
     @Id
-    private String teamId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long Id;
     private String name;
     private String category;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL.ALL)
+    @OneToMany(mappedBy = "team")
     private List<Player> players;
 
-    // Getters and setters
 }

@@ -1,6 +1,8 @@
 package ma.disignMall.Services;
 
+import ma.disignMall.Models.DTOs.CustomerDto;
 import ma.disignMall.Models.Entities.Customer;
+import ma.disignMall.Models.Mappers.CustomerMapper;
 import ma.disignMall.Repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,15 +19,16 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Optional<Customer> getCustomerById(String customerId) {
+    public Optional<Customer> getCustomerById(Long customerId) {
         return customerRepository.findById(customerId);
     }
 
-    public Customer saveCustomer(Customer customer) {
+    public Customer saveCustomer(CustomerDto customerDto) {
+        Customer customer = CustomerMapper.INSTANCE.toEntity(customerDto);
         return customerRepository.save(customer);
     }
 
-    public void deleteCustomer(String customerId) {
+    public void deleteCustomer(Long customerId) {
         customerRepository.deleteById(customerId);
     }
 }

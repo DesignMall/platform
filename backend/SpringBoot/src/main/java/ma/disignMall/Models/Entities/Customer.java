@@ -1,16 +1,14 @@
 package ma.disignMall.Models.Entities;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 public class Customer {
     @Id
-    private String customerId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long Id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -18,11 +16,12 @@ public class Customer {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL.ALL)
+    @OneToMany(mappedBy = "customer")
     private List<Archive> archives;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer")
     private List<Services> services;
 
-    // Getters and setters
+    @OneToMany(mappedBy = "customer")
+    private List<Project> projects;
 }

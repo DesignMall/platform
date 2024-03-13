@@ -17,7 +17,7 @@ public class SuppliersService {
         return suppliersRepository.findAll();
     }
 
-    public Optional<Suppliers> getSupplierById(String supplierId) {
+    public Optional<Suppliers> getSupplierById(Long supplierId) {
         return suppliersRepository.findById(supplierId);
     }
 
@@ -25,7 +25,7 @@ public class SuppliersService {
         return suppliersRepository.save(supplier);
     }
 
-    public void deleteSupplier(String supplierId) {
+    public void deleteSupplier(Long supplierId) {
         suppliersRepository.deleteById(supplierId);
     }
 }

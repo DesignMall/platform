@@ -7,7 +7,8 @@ import java.util.List;
 @Entity
 public class Services {
     @Id
-    private String serviceId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long Id;
     private String description;
     private Float price;
 

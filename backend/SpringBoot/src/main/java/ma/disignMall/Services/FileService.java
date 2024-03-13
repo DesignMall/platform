@@ -1,10 +1,10 @@
-package cum.MyRH.Services;
+package ma.disignMall.Services;
 
 import java.io.File;
 import java.io.IOException;
 
-import cum.MyRH.Models.Entities.Files;
-import cum.MyRH.Repositories.FileRepository;
+import ma.disignMall.Models.Entities.Files;
+import ma.disignMall.Repositories.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
