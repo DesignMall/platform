@@ -23,12 +23,6 @@ public class AdminService {
         this.adminRepository = adminRepository;
         this.adminMapper = adminMapper;
     }
-    public void logout(Long id) {
-        Admin admin = adminRepository.findById(id).orElse(null);
-        assert admin != null;
-        admin.setState(State.OFFLINE);
-        adminRepository.save(admin);
-    }
     public List<Admin> getAllAdmins(){
         return adminRepository.findAll();
     }

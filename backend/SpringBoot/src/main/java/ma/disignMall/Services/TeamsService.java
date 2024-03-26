@@ -24,7 +24,7 @@ public class TeamsService {
     }
 
     public Teams saveTeam(TeamsDto teamsDto) {
-        Teams team = TeamsMapper.INSTANCE.toEntity(teamsDto);
+        Teams team = new Teams(teamsDto.getName(), teamsDto.getCategory());
         return teamsRepository.save(team);
     }
 

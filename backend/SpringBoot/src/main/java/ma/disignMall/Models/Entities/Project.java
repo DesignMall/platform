@@ -1,12 +1,12 @@
 package ma.disignMall.Models.Entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import ma.disignMall.Models.Enums.Status;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "project")
 public class Project {

@@ -4,6 +4,7 @@ import ma.disignMall.Models.DTOs.TeamsDto;
 import ma.disignMall.Models.Entities.Teams;
 import ma.disignMall.Services.TeamsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +16,9 @@ public class TeamsController {
     private TeamsService teamsService;
 
     @GetMapping
-    public List<Teams> getAllTeams() {
-        return teamsService.getAllTeams();
+    public ResponseEntity<List<Teams>> getAllTeams() {
+        List<Teams> teams = teamsService.getAllTeams();
+        return ResponseEntity.ok(teams);
     }
 
     @GetMapping("/{teamId}")

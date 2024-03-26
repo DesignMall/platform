@@ -1,10 +1,12 @@
 package ma.disignMall.Services;
 
 import ma.disignMall.Models.DTOs.PlayerDto;
+import ma.disignMall.Models.Entities.Coordinates;
 import ma.disignMall.Models.Entities.Customer;
 import ma.disignMall.Models.Entities.Player;
 import ma.disignMall.Models.Entities.Teams;
 import ma.disignMall.Models.Mappers.PlayerMapper;
+import ma.disignMall.Repositories.CoordinatesRepository;
 import ma.disignMall.Repositories.CustomerRepository;
 import ma.disignMall.Repositories.PlayerRepository;
 import ma.disignMall.Repositories.TeamsRepository;
@@ -17,13 +19,15 @@ import java.util.Optional;
 @Service
 public class PlayerService {
 
-    private PlayerRepository playerRepository;
-    private PlayerMapper playerMapper;
-    private CustomerRepository customerRepository;
-    private TeamsRepository teamsRepository;
+    private final PlayerRepository playerRepository;
+    private final CoordinatesRepository coordinatesRepository;
+    private final PlayerMapper playerMapper;
+    private final CustomerRepository customerRepository;
+    private final TeamsRepository teamsRepository;
 
     @Autowired
-    public PlayerService(PlayerRepository playerRepository, PlayerMapper playerMapper, CustomerRepository customerRepository, TeamsRepository teamsRepository){
+    public PlayerService(PlayerRepository playerRepository, CoordinatesRepository coordinatesRepository, PlayerMapper playerMapper, CustomerRepository customerRepository, TeamsRepository teamsRepository){
+        this.coordinatesRepository = coordinatesRepository;
         this.customerRepository = customerRepository;
         this.teamsRepository = teamsRepository;
         this.playerRepository = playerRepository;
@@ -42,10 +46,12 @@ public class PlayerService {
         Player player = playerMapper.toEntity(playerDto);
         Customer customer = customerRepository.findById(playerDto.getCustomerId()).orElse(null);
         Teams team = teamsRepository.findById(playerDto.getTeamId()).orElse(null);
+        Coordinates NameCoordinates = coordinatesRepository.save(playerDto.getNameCoordinates());
+        Coordinates NumberCoordinates = coordinatesRepository.save(playerDto.getNumberCoordinates());
         player.setCustomer(customer);
         player.setTeam(team);
-        player.setNameCoordinates(playerDto.getNameCoordinates());
-        player.setNumberCoordinates(playerDto.getNumberCoordinates());
+        player.setNameCoordinates(NameCoordinates);
+        player.setNumberCoordinates(NumberCoordinates);
         return playerRepository.save(player);
     }
 
